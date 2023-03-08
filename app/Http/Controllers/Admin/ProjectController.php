@@ -60,8 +60,10 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return to_route('admin.projects.index')->with('type', 'danger')->with('msg', "Il progetto $project->name è stato cancellato con successo.");
     }
 }
