@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.home') }}">
+        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_laravel">
                 Portfolio
             </div>
@@ -16,7 +16,7 @@
             <ul class="navbar-nav me-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link @if (Route::is('admin.home')) active @endif" href="{{ route('admin.home') }}">{{ __('Home') }}</a>
+                        <a class="nav-link @if (Route::is('admin.home')) active @endif" href="{{ url('/') }}">{{ __('Home') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if (Route::is('admin.projects.index')) active @endif" href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
