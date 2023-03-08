@@ -26,6 +26,9 @@
         @include('includes.navbar')
         <main class="container">
             @include('includes.alert')
+            @auth    
+                @include('includes.errors')
+            @endauth
             @yield('content')
         </main>
     </div>

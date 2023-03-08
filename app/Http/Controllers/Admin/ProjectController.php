@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -31,6 +32,24 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'name' => 'required|string|unique:projects|min:5|max:50',
+                'project_url' => 'required|string',
+                'image_url' => 'nullable|url',
+                'description' => 'required|string'
+            ],
+            [
+                'name.required' => 'Il nome del progetto è obbligatorio',
+                'name.unique' => 'Non possono esserci due nomi progetto uguali',
+                'name.min' => 'Il nome del progetto deve avere almeno 5 caratteri',
+                'name.max' => 'Il nome del progetto deve avere massimo 50 caratteri',
+                'project_url.required' => 'Il link progetto è obbligatorio',
+                'image_url.url' => 'L\'url immagine deve essere valido',
+                'description.required' => 'La descrizione è obbligatoria'
+            ]
+        );
+
         $data = $request->all();
         $project = new Project();
         $project->fill($data);
@@ -60,6 +79,24 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $request->validate(
+            [
+                'name' => ['required', 'string', Rule::unique('projects')->ignore($project->id), 'min:5', 'max:50'],
+                'project_url' => 'required|string',
+                'image_url' => 'nullable|url',
+                'description' => 'required|string'
+            ],
+            [
+                'name.required' => 'Il nome del progetto è obbligatorio',
+                'name.unique' => 'Non possono esserci due nomi progetto uguali',
+                'name.min' => 'Il nome del progetto deve avere almeno 5 caratteri',
+                'name.max' => 'Il nome del progetto deve avere massimo 50 caratteri',
+                'project_url.required' => 'Il link progetto è obbligatorio',
+                'image_url.url' => 'L\'url immagine deve essere valido',
+                'description.required' => 'La descrizione è obbligatoria'
+            ]
+        );
+
         $data = $request->all();
         $project->fill($data);
         $project->save();
