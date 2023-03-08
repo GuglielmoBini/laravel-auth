@@ -26,7 +26,14 @@
             </div>
           </div>
         </div>
-        <a href="{{ route('admin.projects.index') }}" class="btn btn-danger w-25 my-4">Torna Indietro</a>
+        <div class="d-flex">
+          <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Torna Indietro</a>
+          <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger mx-4"><i class="fa-solid fa-trash"></i></button>
+        </form>
+        </div>
     </div>
   </section>
 @endsection
