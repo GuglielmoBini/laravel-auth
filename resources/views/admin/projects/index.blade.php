@@ -3,6 +3,7 @@
 @section('content')
     <header>
         <h1 class="my-5">Projects</h1>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Aggiungi</a>
     </header>
     <table class="table">
         <thead>
