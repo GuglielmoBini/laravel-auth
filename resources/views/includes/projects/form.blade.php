@@ -21,19 +21,22 @@
                     <small class="text-muted">Inserisci una descrizione del progetto</small>
                   </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <div class="mb-3">
                     <label for="project_url" class="form-label">Link Progetto</label>
                     <input type="text" class="form-control" id="project_url" name="project_url" value="{{ old('project_url', $project->project_url) }}" required>
                     <small class="text-muted">Inserisci il link del progetto</small>
                   </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <div class="mb-3">
                     <label for="image_url" class="form-label">Carica Immagine</label>
                     <input type="file" class="form-control" id="image_url" name="image_url">
                     <small class="text-muted">Scegli un'immagine per il tuo progetto</small>
                   </div>
+            </div>
+            <div class="col-2">
+                <img id="img-preview" class="img-fluid" src="{{ $project->image_url ? asset('storage/' . $project->image_url) : 'https://marcolanci.it/utils/placeholder.jpg' }}" alt="preview">
             </div>
         </div>
         <div class="d-flex justify-content-center my-2">
@@ -42,3 +45,22 @@
     </form>
 </div>
 <a href="{{ route('admin.projects.index') }}" class="btn btn-primary mt-3">Torna Indietro</a>
+
+@section('scripts')
+    <script>
+        const placeholder = 'https://marcolanci.it/utils/placeholder.jpg';
+
+        const imageInput = document.getElementById('image_url');
+        const imagePreview = document.getElementById('img-preview');
+
+        imageInput.addEventListener('change', () => {
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.readAsDataURL(imageInput.files[0]);
+                reader.onload = e => {
+                    imagePreview.setAttribute('src', e.target.result);
+                }
+            } else imagePreview.setAttribute('src', placeholder);
+        });
+    </script>
+@endsection
