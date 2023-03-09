@@ -9,7 +9,7 @@
         <div class="card mb-3">
           <div class="row g-0">
             <div class="col-4">
-              <img src="{{ $project->image_url }}" class="img-fluid w-100 h-100 rounded-start" alt="{{ $project->name }}">
+              <img src="{{ asset('storage/' . $project->image_url) }}" class="img-fluid w-100 h-100 rounded-start" alt="{{ $project->name }}">
             </div>
             <div class="col-8">
               <div class="row g-0 h-100 flex-column">
