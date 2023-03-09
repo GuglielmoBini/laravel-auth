@@ -1,9 +1,9 @@
 <div class="card p-4 shadow">
     @if ($project->exists)
-    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" novalidate>
+    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data" novalidate>
     @method('PUT')
     @else    
-    <form action="{{ route('admin.projects.store') }}" method="POST" novalidate>
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @endif
     @csrf
         <div class="row">
