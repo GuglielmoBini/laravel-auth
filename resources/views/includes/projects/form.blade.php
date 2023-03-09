@@ -30,9 +30,9 @@
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="image_url" class="form-label">Url Immagine</label>
-                    <input type="url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $project->image_url) }}">
-                    <small class="text-muted">Inserisci l'url dell'immagine</small>
+                    <label for="image_url" class="form-label">Carica Immagine</label>
+                    <input type="file" class="form-control" id="image_url" name="image_url">
+                    <small class="text-muted">Scegli un'immagine per il tuo progetto</small>
                   </div>
             </div>
         </div>
