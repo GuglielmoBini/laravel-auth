@@ -43,4 +43,9 @@
             @endforelse            
           </tbody>
     </table>
+    <div class="mt-5 d-flex justify-content-center">
+        @if ($projects->hasPages())
+            {{ $projects->links() }}
+        @endif
+    </div>
 @endsection
